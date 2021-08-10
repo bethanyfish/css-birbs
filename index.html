@@ -1,13 +1,46 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8"/>
-    <meta name="viewport" content="width=device-width,initial-scale=1"/>
-    <meta name="description" content="Birds drawn in CSS"/>
-    <title>Birbs of CSS</title>
-    <link href="birbs.css" rel="stylesheet">
-  </head>
-  <body>
-    <h1>Good morning birds</h1>
-  </body>
+<html>
+
+    <body>
+    
+        <!-- Adapted from http://codoki.com/2015/09/01/native-javascript-templating/ -->
+        <!-- Implemented Marcos Correia's suggestion - refer to article comments -->
+
+        <ul id="list"></ul>
+
+        <script id="my-template" type="x-template">
+            <span class="movie-name">{name}</span>: 
+            <span class="movie-rating">{rating}</span>
+        </script>
+
+        <script>
+
+            // Simple array of movies
+            var movies = [
+                { "name" : "Inception", "rating": "4" },
+                { "name" : "Goodfellas", "rating": "5" },
+                { "name" : "Fight Club", "rating": "4" },
+            ];
+
+            // Loop through the movie array and append each list item
+            movies.forEach(function(movie) {
+
+                // get template from tag
+                var template = document.getElementById("my-template").innerHTML;
+
+                // replace placeholders with values from movie object
+                for (var key in movie) {
+                    template = template.replace (new RegExp("{"+key+"}", 'g'), movie[key]);
+                }
+
+                // add to the list
+                el = document.createElement('li');
+                el.innerHTML = template;
+                document.getElementById("list").appendChild(el);
+
+            });
+
+        </script>
+
+    </body>
+
 </html>
