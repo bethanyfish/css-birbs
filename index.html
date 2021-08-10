@@ -18,25 +18,25 @@
     <script>
 
         // Simple array of movies
-        var movies = [
+        var birbs = [
             { "name" : "Waxwing", "class": "waxwing" },
             { "name" : "Yellow Warbler", "class": "yellow-warbler" },
             { "name" : "Rose Breasted Grosbeak", "class": "rose-breasted-grosbeak" },
         ];
 
         // Loop through the movie array and append each list item
-        movies.forEach(function(movie) {
+        birbs.forEach(function(birb) {
 
             // get template from tag
             var template = document.getElementById("my-template").innerHTML;
 
             // replace placeholders with values from movie object
-            for (var key in movie) {
+            for (var key in birb) {
                 template = template.replace (new RegExp("{"+key+"}", 'g'), movie[key]);
             }
 
             // add to the list
-            el = document.createElement('div');
+            el = document.createElement('section');
             el.innerHTML = template;
             document.getElementById("root").appendChild(el);
 
